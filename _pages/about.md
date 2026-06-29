@@ -1,6 +1,11 @@
-About me
-======
-I earned my Bachelor’s degree from Shenzhen University in 2018 and was awarded a Ph.D. in 2023 under the joint supervision of Prof. Jiwu Huang and Assistant Prof. Haodong Li. My doctoral research centered on multimedia security, with a specialized focus on developing methodologies for digital image tampering localization.
+---
+permalink: /
+title: "About me"
+author_profile: true
+---
+
+I earned my Bachelor's degree from Shenzhen University in 2018 and was awarded a Ph.D. in 2023 under the joint supervision of Prof. Jiwu Huang and Assistant Prof. Haodong Li. My doctoral research centered on multimedia security, with a specialized focus on developing methodologies for digital image tampering localization.
 
 I am currently employed at Huawei as a Senior Algorithm Engineer.
 
+My research interests include multimedia forensics and MLLM. As of June 29, 2026, my Google Scholar profile lists 12 articles, 282 citations, an h-index of 5, and an i10-index of 3.

@@ -12,7 +12,7 @@ site_theme               : "default"
 title                    : "Peiyu Zhuang"
 title_separator          : "-"
 name                     : &name "Peiyu Zhuang"
-description              : &description "Researcher in multimedia forensics and MLLMs"
+description              : &description "Postdoctoral researcher in multimedia content security, AI safety, and 3D reconstruction"
 url                      : https://zhuangpeiyu.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "ZhuangPeiyu/ZhuangPeiyu.github.io"
@@ -25,11 +25,11 @@ author:
   avatar           : "peiyu-avatar.jpg"
   name             : "Zhuang Peiyu"
   pronouns         : # example: "she/her"  
-  bio              : "Multimedia forensics and MLLM"
+  bio              : "Postdoctoral Fellow in multimedia content security, AI safety, and 3D reconstruction"
   location         : "Shenzhen, China"
-  employer         : "HUAWEI"
+  employer         : "Sun Yat-sen University"
   uri              : # URL
-  email            : "zhuangpeiyu@huawei.com" 
+  email            : "zhuangpy@mail.sysu.edu.cn" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile

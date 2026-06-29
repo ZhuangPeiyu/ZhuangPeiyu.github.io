@@ -5,7 +5,7 @@ author_profile: true
 ---
 
 <div class="academic-home">
-  <p class="home-lead">I am a Postdoctoral Fellow at the School of Cyber Science and Technology, Sun Yat-sen University, advised by Prof. Xiaochun Cao. My research focuses on multimedia content security, artificial intelligence safety, image tampering localization, and 3D reconstruction. My work has appeared in venues and journals including IEEE TIFS, AAAI, ESWA, and ICRA.</p>
+  <p class="home-lead">I am a Postdoctoral Fellow at the School of Cyber Science and Technology, Sun Yat-sen University, advised by Prof. Xiaochun Cao. I received my Ph.D. from the College of Electronics and Information Engineering at Shenzhen University in 2023, under the joint supervision of Prof. Jiwu Huang and Assistant Prof. Haodong Li. Before joining Sun Yat-sen University in January 2026, I worked as a Senior Algorithm Engineer at Huawei's 2012 Laboratories from July 2023 to January 2026. My research focuses on multimedia content security, artificial intelligence safety, image tampering localization, and 3D reconstruction. My work has appeared in venues and journals including IEEE TIFS, AAAI, ESWA, and ICRA.</p>
 
   <div class="home-actions" aria-label="Profile links">
     <a href="/publications/" class="home-action"><i class="fas fa-fw fa-book-open" aria-hidden="true"></i>Publications</a>
@@ -99,10 +99,5 @@ author_profile: true
       <li><span>First Prize, Outstanding Paper Award of the Guangdong Computer Society, 2023. First awardee.</span></li>
       <li><span>Champion, DeeperForensics Challenge 2020. Second awardee.</span></li>
     </ol>
-  </section>
-
-  <section class="home-section">
-    <h2>Biography</h2>
-    <p>I received my Ph.D. from the College of Electronics and Information Engineering at Shenzhen University in 2023, under the joint supervision of Prof. Jiwu Huang and Assistant Prof. Haodong Li. Before joining Sun Yat-sen University as a postdoctoral fellow in January 2026, I worked as a Senior Algorithm Engineer at Huawei's 2012 Laboratories from July 2023 to January 2026.</p>
   </section>
 </div>

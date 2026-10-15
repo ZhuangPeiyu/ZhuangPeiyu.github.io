@@ -1,0 +1,29 @@
+.publication-venue {
+  margin: 0.6rem auto 0.2rem;
+}
+
+.sigma-note {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+}
+
+.content table td,
+.content table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.content table td:first-child,
+.content table th:first-child {
+  text-align: left;
+}
+
+tr.sigma-row {
+  background: #e8f2ff !important;
+  font-weight: 650;
+}
+
+.figure-caption {
+  margin-top: 0.75rem;
+  color: #4a4a4a;
+}

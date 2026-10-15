@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGMA: Semantic-Difference Instruction-Grounding Mask Annotator</title>
+  <meta name="description" content="SIGMA turns public text-driven image-editing pairs into pixel-level masks for image manipulation localization. NeurIPS 2026 Spotlight.">
+  <meta name="keywords" content="SIGMA, image manipulation localization, text-driven editing, mask annotation, NeurIPS 2026">
+  <meta property="og:title" content="SIGMA: Semantic-Difference Instruction-Grounding Mask Annotator">
+  <meta property="og:description" content="A mask annotator for text-driven image manipulation localization. NeurIPS 2026 Spotlight.">
+  <meta property="og:image" content="static/images/framework.jpg">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/sigma.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SIGMA: Semantic-Difference Instruction-Grounding Mask Annotator for Text-Driven Image Manipulation Localization</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Peiyu Zhuang<sup>1</sup>,</span>
+            <span class="author-block">Jianquan Yang<sup>1,*</sup>,</span>
+            <span class="author-block">Haodong Li<sup>2</sup>,</span>
+            <span class="author-block">Zhuoying Cai<sup>1</sup>,</span>
+            <span class="author-block">Ruitao Xie<sup>3</sup>,</span>
+            <span class="author-block">Jishen Zeng<sup>4</sup>,</span>
+            <span class="author-block">Baoying Chen<sup>4</sup>,</span>
+            <span class="author-block">Jiwu Huang<sup>5</sup>,</span>
+            <span class="author-block">Xiaochun Cao<sup>1,*</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <sup>1</sup>Shenzhen Campus of Sun Yat-sen University<br>
+              <sup>2</sup>Shenzhen University<br>
+              <sup>3</sup>Shenzhen University of Advanced Technology<br>
+              <sup>4</sup>Alibaba Group<br>
+              <sup>5</sup>Shenzhen MSU-BIT University
+            </span>
+            <br>
+            <span class="author-block" style="font-size: 0.9rem;">*Corresponding authors</span>
+          </div>
+          <div class="is-size-5 publication-venue publication-awards">NeurIPS 2026 Spotlight</div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="static/pdf/SIGMA_cameraReady.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/ZhuangPeiyu/SIGMA" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <img src="static/images/motivation.jpg" alt="Failure modes of pixel differencing and instruction-only grounding, and an overview of SIGMA.">
+          <p class="figure-caption has-text-justified">
+            (a) Pixel-level differencing fails under diffusion-based editing: a low threshold marks unedited regions, and a high threshold drops real but subtle edits.
+            (b) Localizing only from the instruction marks what the prompt names, and misses side-effects the editor actually made.
+            (c) SIGMA compares semantic features and grounds the instruction, so the mask falls on the region that changed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-driven image editing has advanced rapidly, but localizing these manipulations requires image manipulation localization (IML) models trained on large pixel-annotated datasets. There is still no low-cost way to obtain such training data at scale.
+            Public editing datasets already contain millions of <i>(original, edited)</i> pairs that match the structure of IML training samples. They lack only pixel-level masks.
+            Recovering those masks is not a thresholding problem: pixel differencing is overwhelmed by diffusion-induced perturbations, and instruction-only grounding localizes only what the prompt describes.
+          </p>
+          <p>
+            We propose <b>SIGMA</b> (<b>S</b>emantic-difference <b>I</b>nstruction-<b>G</b>rounding <b>M</b>ask <b>A</b>nnotator).
+            It differences features in a vision foundation backbone and injects an instruction-derived spatial prior through bidirectional cross-modal refinement.
+            Stage I supervises on inpainting masks. Stage II closes the diffusion-domain shift with VAE-roundtrip noise calibration, EMA self-training, and an edit-noise disentanglement loss.
+            On five benchmarks, SIGMA outperforms existing automatic mask generators by <b>+12.20</b> F1 and <b>+11.16</b> IoU.
+            Applied to public editing corpora, it produces a ~1.1M IML training set that improves four detectors by <b>+20.98</b> F1 across five datasets.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Editing Data Already Exists. The Masks Do Not.</h2>
+        <div class="content has-text-justified">
+          <p>
+            Public editing corpora have reached the million-sample scale. ByteMorph contains about 6.0M pairs and AnyEdit about 2.5M.
+            The largest IML resources that already ship pixel masks are much smaller: SID-Set is about 300K and GRE about 228.7K.
+            Each editing pair is already an <i>(original, edited, instruction)</i> triplet. The missing piece is a pixel mask that says where the edit landed.
+          </p>
+          <img src="static/images/scale.jpg" alt="Bar chart comparing the scale of public editing datasets and masked IML datasets.">
+          <p class="figure-caption">
+            Public editing datasets and masked IML datasets, drawn on a shared linear scale. The editing corpora are about an order of magnitude larger.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            SIGMA uses two branches that check each other. The semantic branch differences multi-scale features from a frozen DINOv2 encoder, which answers where the content of the two images actually differs.
+            The instruction branch parses the edit instruction into an original concept, an edited concept, and an action (add, remove, replace, attribute change, or global), then turns that tuple into a spatial prior.
+            Bidirectional cross-modal refinement lets the semantic stream attend to the instruction first, and then lets the instruction re-anchor itself to the updated visual evidence.
+          </p>
+          <p>
+            Training has two stages. Stage I learns localized edits from inpainting pairs that already have exact masks.
+            Stage II adapts the model to unlabeled public editing pairs. A VAE round-trip supplies a zero-edit noise reference, an EMA teacher (<i>&mu;</i> = 0.999) provides high-confidence pseudo-labels, and an edit-noise disentanglement loss separates edit features from reconstruction noise.
+          </p>
+          <img src="static/images/framework.jpg" alt="SIGMA architecture with a semantic-difference branch and an instruction-grounding branch.">
+          <p class="figure-caption">
+            SIGMA localizes the edited region with a semantic-difference branch and an instruction-grounding branch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Mask Quality</h2>
+        <div class="content has-text-justified">
+          <p>
+            We compare SIGMA with pixel-difference thresholds and with learning-based change detectors on CoCoGlide, AutoSplice, MagicBrush, DEAL-300K, and OpenSDI.
+            Fixed thresholds do not transfer: PixDiff-Fixed at its best setting, <i>&tau;</i> = 10, reaches 71.10 average F1.
+            DDPM-CD is strong on CoCoGlide (97.80 F1) and weak on DEAL-300K (20.90 F1).
+            After Stage II, SIGMA reaches <b>89.83</b> average F1 and <b>83.52</b> average IoU, which is 12.20 F1 and 11.16 IoU above DDPM-CD.
+            The largest margin is on DEAL-300K: 76.43 versus 20.90 F1.
+          </p>
+          <div class="table-container">
+            <table class="table is-fullwidth is-striped is-hoverable is-narrow">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Avg. F1</th>
+                  <th>Avg. IoU</th>
+                  <th>DEAL-300K F1</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>PixDiff-Fixed (<i>&tau;</i> = 10)</td><td>71.10</td><td>62.09</td><td>28.04</td></tr>
+                <tr><td>PixDiff-Otsu</td><td>52.31</td><td>37.71</td><td>34.21</td></tr>
+                <tr><td>Meta-CD</td><td>71.30</td><td>60.06</td><td>45.80</td></tr>
+                <tr><td>DDPM-CD</td><td>77.63</td><td>72.37</td><td>20.90</td></tr>
+                <tr class="sigma-row"><td>SIGMA</td><td>89.83</td><td>83.52</td><td>76.43</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="sigma-note">F1 and IoU are percentages. The full per-dataset table is in the paper.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Qualitative Comparison</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/qual_cocoglide.jpg" alt="Qualitative mask comparison on CoCoGlide.">
+          <p class="figure-caption">CoCoGlide. Columns, from left to right: original, edited, PixDiff-Fixed (<i>&tau;</i> = 10), PixDiff-Fixed (<i>&tau;</i> = 20), PixDiff-Fixed-morph, PixDiff-Otsu, Meta-CD, DDPM-CD, SIGMA, and ground truth.</p>
+          <img src="static/images/qual_deal.jpg" alt="Qualitative mask comparison on DEAL-300K.">
+          <p class="figure-caption">DEAL-300K, with the same column order. SIGMA stays closer to the ground-truth mask where pixel-difference baselines and DDPM-CD break down.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">From Editing Pairs to IML Supervision</h2>
+        <div class="content has-text-justified">
+          <p>
+            We run SIGMA on AnyEdit, CrispEdit-2M, OmniEdit-Filtered-1.2M, and PromptfixData.
+            The result is about 1.1 million image pairs covering 24 edit operations, with no re-generation and no manual masks.
+            Fine-tuning four existing detectors on this set raises their average F1, relative to the public weights, by 20.98 points across five held-out benchmarks.
+            The per-detector average-F1 gains are +23.43 (CAT-Net), +30.79 (MVSS-Net), +4.58 (PSCC-Net), and +25.13 (TruFor).
+            On MagicBrush, CAT-Net rises from 5.33 to 61.02 F1 and TruFor from 2.51 to 28.35.
+            These gains are measured against the public weights. They are not a claim that every detector then exceeds a DDPM-CD-annotated fine-tune. MVSS-Net's average F1 with SIGMA masks is 42.69, below its DDPM-CD-annotated fine-tune at 44.43.
+          </p>
+          <div class="table-container">
+            <table class="table is-fullwidth is-striped is-hoverable is-narrow">
+              <thead>
+                <tr>
+                  <th>Detector</th>
+                  <th>Public F1</th>
+                  <th>Fine-tuned with SIGMA</th>
+                  <th>Gain</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>CAT-Net</td><td>21.45</td><td>44.88</td><td>+23.43</td></tr>
+                <tr><td>MVSS-Net</td><td>11.90</td><td>42.69</td><td>+30.79</td></tr>
+                <tr><td>PSCC-Net</td><td>31.35</td><td>35.93</td><td>+4.58</td></tr>
+                <tr><td>TruFor</td><td>15.94</td><td>41.07</td><td>+25.13</td></tr>
+                <tr class="sigma-row"><td>Mean of the four gains</td><td></td><td></td><td>+20.98</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="sigma-note">Average F1 (%) on AutoSplice, CoCoGlide, DEAL-300K, MagicBrush, and OpenSDI.</p>
+          <img src="static/images/sunburst.jpg" alt="Sunburst of the SIGMA-annotated training set by edit operation.">
+          <p class="figure-caption">
+            Four public editing corpora, annotated by SIGMA into about 1.1 million pairs and 24 operation types.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Robustness to Post-Processing</h2>
+        <div class="content has-text-justified">
+          <p>
+            Under JPEG compression, additive Gaussian noise, and Gaussian blur, SIGMA's F1 stays near 0.95 on AutoSplice and near 0.91 on OpenSDI.
+            Pixel differencing drops sharply once noise is added. Remote-sensing change detectors drop under blur.
+          </p>
+          <img src="static/images/robustness.jpg" alt="F1 of SIGMA and baselines under JPEG, noise, and blur.">
+          <p class="figure-caption">
+            F1 under JPEG compression, additive white Gaussian noise, and Gaussian blur on AutoSplice and OpenSDI.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{zhuang2026sigma,
+  title     = {SIGMA: Semantic-Difference Instruction-Grounding Mask Annotator for Text-Driven Image Manipulation Localization},
+  author    = {Zhuang, Peiyu and Yang, Jianquan and Li, Haodong and Cai, Zhuoying and Xie, Ruitao and Zeng, Jishen and Chen, Baoying and Huang, Jiwu and Cao, Xiaochun},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>,
+            which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            The website template is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -13,6 +13,18 @@
   vertical-align: middle;
 }
 
+table.sigma-wide {
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+table.sigma-wide td:first-child,
+table.sigma-wide th:first-child,
+table.sigma-wide td:nth-child(2),
+table.sigma-wide th:nth-child(2) {
+  text-align: left;
+}
+
 .content table td:first-child,
 .content table th:first-child {
   text-align: left;
